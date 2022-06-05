@@ -1,1 +1,1 @@
-# database_project_2022
+database project for NTUA ECE 2022
