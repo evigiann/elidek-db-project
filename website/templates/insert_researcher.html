@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>ELIDEK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+<body class="bg-dark">
+    <div class="container bg-dark">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
+          <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="60"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4" style="color:#ffffff">ELIDEK</span>
+          </a>
+          <ul class="nav nav-pills bg-dark">
+            <li class="nav-item"><a href="{{url_for('home')}}" class="nav-link" style="color:#2dc50e">Home</a></li>
+            <li class="nav-item"><a href="{{url_for('explore')}}" class="nav-link" style="color:#2dc50e">Explore</a></li>
+            <li class="nav-item"><a href="{{url_for('update')}}" class="nav-link" style="color:#2dc50e">Update</a></li>
+          </ul>
+        </header>
+        <div>
+            <form action="{{url_for('insert_researcher')}}" method="POST" style="color:#ffffff">
+              <fieldset>
+                <legend>Create New Researcher:</legend>
+                <label for="researcher_name">Researcher name:</label>
+                <input type="text" id="researcher_name" name="researcher_name"><br><br>
+                <label for="researcher_surname">Researcher_surname:</label>
+                <input type="text" id="researcher_surname" name="researcher_surname"><br><br>
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender"><br><br>
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth"><br><br>
+                <label for="organisation_name">Organisation:</label>
+                <input type="text" id="organisation_name" name="organisation_name"><br><br>
+                <legend>Add Project New (or Already Existing) Researcher is Working On:</legend>
+                <label for="project_title">Project:</label>
+                <input type="text" id="project_title" name="project_title"><br><br>
+                <input type="submit" value="Submit">
+            </fieldset>
+            </form>
+            <h5 style="color:#ffffff">{{message}}</h5>
+            </div>
+  </body>
+</html>
