@@ -3,6 +3,5 @@ mysql-connector-python==9.4.0
 python-dotenv==1.0.0
 gunicorn==21.2.0
 flask-cors==6.0.1
-Flask-MySQLdb==2.0.0
+Flask-MySQLdb==1.0.1
 mysqlclient==2.2.7
-
