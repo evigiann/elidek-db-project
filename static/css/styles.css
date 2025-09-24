@@ -1,0 +1,42 @@
+    
+/*home*/
+    .hero-section {
+        background: linear-gradient(135deg, #1a1f25 0%, #2d3436 100%);
+        padding: 4rem 0;
+        margin-bottom: 2rem;
+        border-bottom: 3px solid #2dc50e;
+      }
+      .feature-card {
+        background: #2d3436;
+        border: 1px solid #3d4547;
+        border-radius: 10px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        margin-bottom: 1.5rem;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #2dc50e;
+      }
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2dc50e;
+      }
+      .nav-link.active {
+        background-color: #2dc50e !important;
+        color: #000 !important;
+        border-radius: 5px;
+      }
+
+
+    /*info*/
+    
+      .mission-section {
+        background: linear-gradient(135deg, #1a1f25 0%, #2d3436 100%);
+        padding: 3rem 0;
+      }
+      .feature-icon {
+        font-size: 2.5rem;
+        color: #2dc50e;
+        margin-bottom: 1rem;
+      }

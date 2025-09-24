@@ -4,29 +4,121 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ELIDEK</title>
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>ELIDEK - Update Database</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
-<body class="bg-dark">
-  <div class="container bg-dark">
+  <body class="bg-dark">
+    <div class="container bg-dark">
       <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
         <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="60"><use xlink:href="#bootstrap"></use></svg>
-          <span class="fs-4" style="color:#ffffff">ELIDEK</span>
+          <span class="fs-4 text-white">
+            <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+            ELIDEK Portal
+          </span>
         </a>
         <ul class="nav nav-pills bg-dark">
-          <li class="nav-item"><a href="{{url_for('home')}}" class="nav-link" style="color:#2dc50e">Home</a></li>
-          <li class="nav-item"><a href="{{url_for('explore')}}" class="nav-link" style="color:#2dc50e">Explore</a></li>
-          <li class="nav-item"><a href="{{url_for('update')}}" class="nav-link" style="color:#2dc50e">Update</a></li>
+          <li class="nav-item">
+            <a href="{{url_for('home')}}" class="nav-link {{ 'active' if request.path == '/' else '' }}" style="color: #2dc50e">
+              <i class="fas fa-home me-1"></i>Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url_for('explore')}}" class="nav-link {{ 'active' if request.path == '/explore' else '' }}" style="color: #2dc50e">
+              <i class="fas fa-search me-1"></i>Explore
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url_for('update')}}" class="nav-link {{ 'active' if request.path == '/update' else '' }}" style="color: #2dc50e">
+              <i class="fas fa-edit me-1"></i>Update
+            </a>
+          </li>
         </ul>
       </header>
- <div class="container " style="color:#ffffff">
-      Choose your next step:
- <div>
-     <div class="list-group">
-         <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('insert_new_data')}}"  style="color:#2dc50e">Insert new data</a>
-         <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('delete_existing_data')}}" style="color:#2dc50e">Delete existing data</a>
+    </div>
 
-     </div>
+    <div class="container">
+      <!-- Page Header -->
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h1 class="display-5 fw-bold text-white">
+            <i class="fas fa-database me-3" style="color: #2dc50e;"></i>
+            Database Management
+          </h1>
+          <p class="lead text-light">Add new research data or remove existing entries from the ELIDEK database</p>
+        </div>
+      </div>
+
+      <!-- Action Cards -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-4">
+            <h3 class="text-white mb-4">Choose Your Action</h3>
+          </div>
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('insert_new_data')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-plus-circle fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Insert New Data</h5>
+                <p class="mb-0 small text-light">Add new research projects, researchers, organizations, or programs</p>
+              </div>
+            </a>
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('delete_existing_data')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-trash-alt fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Delete Existing Data</h5>
+                <p class="mb-0 small text-light">Remove outdated or incorrect entries from the database</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="feature-card p-4">
+            <h4 class="text-white text-center mb-4">
+              <i class="fas fa-info-circle me-2" style="color: #2dc50e;"></i>
+              Database Management Guidelines
+            </h4>
+            <div class="row">
+              <div class="col-md-6">
+                <h6 class="text-success">Before Inserting Data:</h6>
+                <ul class="text-light small">
+                  <li>Ensure all required fields are complete</li>
+                  <li>Verify researcher IDs and organization codes</li>
+                  <li>Check for duplicate entries</li>
+                  <li>Validate funding amounts and dates</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-success">Before Deleting Data:</h6>
+                <ul class="text-light small">
+                  <li>Confirm the data is no longer needed</li>
+                  <li>Check for dependent records</li>
+                  <li>Backup important information</li>
+                  <li>Ensure proper authorization</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark border-top border-success mt-5 py-4">
+      <div class="container text-center">
+        <p class="text-light mb-0">
+          <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+          Hellenic Foundation for Research & Innovation (ELIDEK) © 2024
+        </p>
+        <p class="text-light small">Advancing scientific excellence through strategic funding and innovation support</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>

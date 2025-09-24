@@ -2,25 +2,83 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ELIDEK</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>About ELIDEK</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
-<body class="bg-dark">
+  <body class="bg-dark">
     <div class="container bg-dark">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
-          <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="60"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-4" style="color:#ffffff">ELIDEK</span>
-          </a>
-          <ul class="nav nav-pills bg-dark">
-            <li class="nav-item"><a href="{{url_for('home')}}" class="nav-link" style="color:#2dc50e">Home</a></li>
-            <li class="nav-item"><a href="{{url_for('explore')}}" class="nav-link" style="color:#2dc50e">Explore</a></li>
-            <li class="nav-item"><a href="{{url_for('update')}}" class="nav-link" style="color:#2dc50e">Update</a></li>
-          </ul>
-        </header>
-    <div>
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
+        <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <span class="fs-4 text-white">
+            <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+            ELIDEK Portal
+          </span>
+        </a>
+        <ul class="nav nav-pills bg-dark">
+          <li class="nav-item"><a href="{{url_for('home')}}" class="nav-link" style="color: #2dc50e">Home</a></li>
+          <li class="nav-item"><a href="{{url_for('explore')}}" class="nav-link" style="color: #2dc50e">Explore</a></li>
+          <li class="nav-item"><a href="{{url_for('update')}}" class="nav-link" style="color: #2dc50e">Update</a></li>
+        </ul>
+      </header>
+    </div>
+
+    <div class="mission-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-5 fw-bold text-white mb-4">About ELIDEK</h1>
+            <p class="lead text-light">The Hellenic Foundation for Research and Innovation (ELIDEK) is a key funder of academic research in Greece, supporting innovation and scientific excellence across multiple disciplines.</p>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="text-center p-4">
+            <i class="fas fa-euro-sign feature-icon"></i>
+            <h4 class="text-white">Funding Range</h4>
+            <p class="text-light">Projects receive funding from €100,000 to €1,000,000, supporting research across 1-4 year durations.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="text-center p-4">
+            <i class="fas fa-university feature-icon"></i>
+            <h4 class="text-white">Organization Types</h4>
+            <p class="text-light">Collaborating with Universities, Research Centers, and Enterprises to drive innovation forward.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="text-center p-4">
+            <i class="fas fa-clipboard-check feature-icon"></i>
+            <h4 class="text-white">Rigorous Evaluation</h4>
+            <p class="text-light">Each project undergoes thorough evaluation by independent researchers to ensure quality and impact.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+          <h3 class="text-white mb-4">Our Mission</h3>
+          <p class="text-light">ELIDEK plays a crucial role in the Greek research ecosystem by:</p>
+          <ul class="text-light">
+            <li>Funding high-quality research projects across all scientific disciplines</li>
+            <li>Supporting researchers at various career stages</li>
+            <li>Promoting interdisciplinary collaboration</li>
+            <li>Ensuring transparent and fair evaluation processes</li>
+            <li>Facilitating knowledge transfer and innovation</li>
+          </ul>
+          
+          <div class="mt-4">
+            <a href="{{url_for('home')}}" class="btn btn-success">
+              <i class="fas fa-arrow-left me-2"></i>Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
