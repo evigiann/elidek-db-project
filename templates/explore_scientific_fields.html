@@ -6,20 +6,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>ELIDEK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
 <body class="bg-dark">
     <div class="container bg-dark">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
-          <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="60"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-4" style="color:#ffffff">ELIDEK</span>
-          </a>
-          <ul class="nav nav-pills bg-dark">
-            <li class="nav-item"><a href="{{url_for('home')}}" class="nav-link" style="color:#2dc50e">Home</a></li>
-            <li class="nav-item"><a href="{{url_for('explore')}}" class="nav-link" style="color:#2dc50e">Explore</a></li>
-            <li class="nav-item"><a href="{{url_for('update')}}" class="nav-link" style="color:#2dc50e">Update</a></li>
-          </ul>
-        </header>
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
+        <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <span class="fs-4 text-white">
+            <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+            ELIDEK Portal
+          </span>
+        </a>
+     <ul class="nav nav-pills bg-dark">
+          <li class="nav-item">
+            <a href="{{url_for('home')}}" class="nav-link {{ 'active' if request.path == '/' else '' }}" style="color: #2dc50e">
+              <i class="fas fa-home me-1"></i>Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url_for('explore')}}" class="nav-link {{ 'active' if request.path == '/explore' else '' }}" style="color: #2dc50e">
+              <i class="fas fa-search me-1"></i>Explore
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url_for('update')}}" class="nav-link {{ 'active' if request.path == '/update' else '' }}" style="color: #2dc50e">
+              <i class="fas fa-edit me-1"></i>Update
+            </a>
+          </li>
+        </ul>
+      </header>
+    </div>
     <div>
       <div>
         <form action="{{url_for('explore_scientific_fields_2')}}" method = 'POST'>
