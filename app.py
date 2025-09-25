@@ -217,7 +217,7 @@ def explore_scientific_fields_3():
             field_details = cur.fetchall()
             cur.close()
             return render_template("explore_scientific_fields_3.html", field_details=field_details)
-#for the more niche quiries
+#for the more niche queries
 @app.route('/other')
 def other():
     return render_template("other.html")
@@ -227,28 +227,28 @@ def fun_fact_1():
     fun_fact_details_1=[]
     if request.method == 'GET': 
         cur = mysql.connection.cursor()
-        cur.execute("""SELECT DISTINCT organisation_name, evaluation_date AS 'FIRST YEAR',
-(evaluation_date+1) AS 'SECOND YEAR', counter AS 'COUNT'
-FROM
-(SELECT o.organization_name AS ORGANISATION_NAME, count(*) AS counter, extract(YEAR FROM
-p.evaluation_date) AS YEAR
- FROM organization o INNER JOIN project p
- ON o.organization_id=p.organization_id
- GROUP BY NAME,YEAR,ID
- ORDER BY o.organization_id
-)
-INNER JOIN
-(SELECT o.organization_name AS NAME, count(*) AS counter, extract(YEAR FROM p.evaluation_date) AS YEAR
- FROM organisation o INNER JOIN project p
- ON o.organization_name=p.organization_name
- GROUP BY NAME,YEAR, orgabisation_name
- ORDER BY o.organization_name
-)
-ON u.organization_name = v.organization_name
-WHERE u.evaluation_date = v.evaluation_date+1 AND u.counter=v.counter AND u.counter>=10
-""")
+        cur.execute("""
+            SELECT o1.organisation_name, o1.year AS first_year, o2.year AS second_year, o1.project_count
+            FROM (
+                SELECT o.organisation_name, YEAR(p.start_date) AS year, COUNT(*) AS project_count
+                FROM organisation o 
+                INNER JOIN project p ON o.organisation_name = p.organisation_name
+                GROUP BY o.organisation_name, YEAR(p.start_date)
+                HAVING COUNT(*) >= 10
+            ) o1
+            INNER JOIN (
+                SELECT o.organisation_name, YEAR(p.start_date) AS year, COUNT(*) AS project_count
+                FROM organisation o 
+                INNER JOIN project p ON o.organisation_name = p.organisation_name
+                GROUP BY o.organisation_name, YEAR(p.start_date)
+                HAVING COUNT(*) >= 10
+            ) o2 ON o1.organisation_name = o2.organisation_name 
+                 AND o2.year = o1.year + 1 
+                 AND o1.project_count = o2.project_count
+            ORDER BY o1.project_count DESC
+        """)
         fun_fact_details_1 = cur.fetchall()
-        return render_template("fun_fact_1.html",fun_fact_details_1=fun_fact_details_1)
+        return render_template("fun_fact_1.html", fun_fact_details_1=fun_fact_details_1)
 #3.5
 @app.route('/fun_fact_2',methods = ['POST','GET'])
 def fun_fact_2():
@@ -264,20 +264,24 @@ def fun_fact_2():
                     ORDER BY counter DESC LIMIT 3;""")
         fun_fact_details_2 = cur.fetchall()
         return render_template("fun_fact_2.html",fun_fact_details_2=fun_fact_details_2)
-#3.6
 @app.route('/fun_fact_3',methods = ['POST','GET'])
 def fun_fact_3():
     fun_fact_details_3=[]
     if request.method == 'GET': 
         cur = mysql.connection.cursor()
-        cur.execute("""SELECT researcher_name, researcher_surname, age, COUNT(project_title) as counter
-FROM project_per_researcher_view
-WHERE project_title IN (SELECT project_title FROM project WHERE ((curdate()<project.end_date) AND (curdate()>project.start_date)))
-GROUP BY researcher_name, researcher_surname, age
-HAVING age < 40
-ORDER BY counter DESC LIMIT 5""")
+        cur.execute("""
+            SELECT researcher_name, researcher_surname, age, COUNT(project_title) as counter
+            FROM project_per_researcher_view
+            WHERE project_title IN (
+                SELECT project_title FROM project 
+                WHERE CURDATE() BETWEEN start_date AND end_date
+            )
+            AND age < 40
+            GROUP BY researcher_name, researcher_surname, age
+            ORDER BY counter DESC 
+        """)
         fun_fact_details_3 = cur.fetchall()
-        return render_template("fun_fact_3.html",fun_fact_details_3=fun_fact_details_3)
+        return render_template("fun_fact_3.html", fun_fact_details_3=fun_fact_details_3)
 #3.7
 @app.route('/fun_fact_4',methods = ['POST','GET'])
 def fun_fact_4():
@@ -290,19 +294,23 @@ def fun_fact_4():
                         ORDER BY funding DESC limit 5;""")
         fun_fact_details_4 = cur.fetchall()
         return render_template("fun_fact_4.html",fun_fact_details_4=fun_fact_details_4)
-#3.8
 @app.route('/fun_fact_5',methods = ['POST','GET'])
 def fun_fact_5():
     fun_fact_details_5=[]
     if request.method == 'GET': 
         cur = mysql.connection.cursor()
-        cur.execute("""SELECT DISTINCT works_on.researcher_name, works_on.researcher_surname, count(project.project_title) as counter
-FROM project INNER JOIN works_on 
-WHERE works_on.project_title not in (select project_title from deliverable)
-AND  works_on.project_title IN (SELECT project_title FROM project)
-GROUP BY works_on.researcher_name, works_on.researcher_surname HAVING counter>100 """)
+        cur.execute("""
+            SELECT w.researcher_name, w.researcher_surname, COUNT(DISTINCT w.project_title) as project_count
+            FROM works_on w
+            WHERE w.project_title NOT IN (
+                SELECT DISTINCT project_title FROM deliverable
+            )
+            GROUP BY w.researcher_name, w.researcher_surname 
+            HAVING project_count >= 5
+            ORDER BY project_count DESC
+        """)
         fun_fact_details_5 = cur.fetchall()
-        return render_template("fun_fact_5.html",fun_fact_details_5=fun_fact_details_5)
+        return render_template("fun_fact_5.html", fun_fact_details_5=fun_fact_details_5)
 #delete page 
 @app.route('/delete_existing_data')
 def delete_existing_data():

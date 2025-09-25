@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ELIDEK</title>
+    <title>ELIDEK - Insert Organisation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
 <body class="bg-dark">
-       <div class="container bg-dark">
+    <div class="container bg-dark">
       <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
         <a href="{{url_for('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
           <span class="fs-4 text-white">
@@ -38,40 +38,150 @@
         </ul>
       </header>
     </div>
-        <div>
-            <form action="{{url_for('insert_organisation')}}" method="POST" style="color:#ffffff">
-              <fieldset>
-                <legend>Create New Organisation:</legend>
-                <label for="organisation_name">Organisation name:</label>
-                <input type="text" id="organisation_name" name="organisation_name"><br><br>
-                <label for="abbreviation">Abbreviation:</label>
-                <input type="text" id="abbreviation" name="abbreviation"><br><br>
-                <label for="postal_code">Postal code:</label>
-                <input type="text" id="postal_code" name="postal_code"><br><br>
-                <label for="street">Street:</label>
-                <input type="text" id="street" name="street"><br><br>
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city"><br><br>
-                <select name="type" id="type">
-                    <optgroup label="Organisation Type">
-                      <option value="research_center">Research Center</option>
-                      <option value="university">University</option>
-                      <option value="enterprise">Enterprise</option>
-                    </optgroup>
-                </select><br></br>
-                <label for="budget_minedu">Ministry of Education Budget(only for universities and research centers):</label>
-                <input type="number" id="budget_minedu" name="budget_minedu"><br><br>
-                <label for="budget_private">Private Budget(only for research centers and enterprises):</label>
-                <input type="number" id="budget_private" name="budget_private"><br><br>
-                <label for="budget_equity">Budget from Equity Funds (only for enterprises):</label>
-                <input type="number" id="budget_equity" name="budget_equity"><br><br>
-                <legend>Add Telephone to a New (or Already Existing) Organisation:</legend>
-                <label for="telephone">Telephone:</label>
-                <input type="number" id="telephone" name="telephone"><br><br>
-                <input type="submit" value="Submit">
-            </fieldset>
-            </form>
-            <h5 style="color:#ffffff">{{message}}</h5>
+
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">
+          <i class="fas fa-building me-2"></i>
+          Create New Organisation
+        </h2>
+        
+        <form action="{{url_for('insert_organisation')}}" method="POST">
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Basic Information</legend>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="organisation_name" class="form-label required">
+                  <i class="fas fa-building me-1"></i>
+                  Organisation Name
+                </label>
+                <input type="text" id="organisation_name" name="organisation_name" class="form-input" placeholder="Enter organisation name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="abbreviation" class="form-label">
+                  <i class="fas fa-font me-1"></i>
+                  Abbreviation
+                </label>
+                <input type="text" id="abbreviation" name="abbreviation" class="form-input" placeholder="Enter abbreviation">
+              </div>
             </div>
+            
+            <div class="form-group">
+              <label for="type" class="form-label required">
+                <i class="fas fa-tags me-1"></i>
+                Organisation Type
+              </label>
+              <select name="type" id="type" class="form-select" required>
+                <option value="">Select organisation type</option>
+                <option value="research_center">Research Center</option>
+                <option value="university">University</option>
+                <option value="enterprise">Enterprise</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Address Information</legend>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="postal_code" class="form-label">
+                  <i class="fas fa-mail-bulk me-1"></i>
+                  Postal Code
+                </label>
+                <input type="text" id="postal_code" name="postal_code" class="form-input" placeholder="Enter postal code">
+              </div>
+              
+              <div class="form-group">
+                <label for="city" class="form-label">
+                  <i class="fas fa-city me-1"></i>
+                  City
+                </label>
+                <input type="text" id="city" name="city" class="form-input" placeholder="Enter city">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="street" class="form-label">
+                <i class="fas fa-road me-1"></i>
+                Street
+              </label>
+              <input type="text" id="street" name="street" class="form-input" placeholder="Enter street address">
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Budget Information</legend>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="budget_minedu" class="form-label">
+                  <i class="fas fa-university me-1"></i>
+                  Ministry of Education Budget
+                </label>
+                <input type="number" id="budget_minedu" name="budget_minedu" class="form-input" placeholder="For universities and research centers" min="0">
+                <small class="text-light">Only for universities and research centers</small>
+              </div>
+              
+              <div class="form-group">
+                <label for="budget_private" class="form-label">
+                  <i class="fas fa-hand-holding-usd me-1"></i>
+                  Private Budget
+                </label>
+                <input type="number" id="budget_private" name="budget_private" class="form-input" placeholder="For research centers and enterprises" min="0">
+                <small class="text-light">Only for research centers and enterprises</small>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="budget_equity" class="form-label">
+                <i class="fas fa-chart-line me-1"></i>
+                Budget from Equity Funds
+              </label>
+              <input type="number" id="budget_equity" name="budget_equity" class="form-input" placeholder="Only for enterprises" min="0">
+              <small class="text-light">Only for enterprises</small>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Contact Information</legend>
+            
+            <div class="form-group">
+              <label for="telephone" class="form-label">
+                <i class="fas fa-phone me-1"></i>
+                Telephone
+              </label>
+              <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="Enter telephone number">
+            </div>
+          </fieldset>
+          
+          <button type="submit" class="form-submit">
+            <i class="fas fa-plus me-2"></i>
+            Create Organisation
+          </button>
+        </form>
+        
+        {% if message %}
+          <div class="form-message {{ 'success' if 'success' in message|lower else 'error' }}">
+            <i class="fas fa-{{ 'check-circle' if 'success' in message|lower else 'exclamation-circle' }} me-2"></i>
+            {{ message }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <footer class="bg-dark border-top border-success mt-5 py-4">
+      <div class="container text-center">
+        <p class="text-light mb-0">
+          <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+          Hellenic Foundation for Research & Innovation (ELIDEK) © 2024
+        </p>
+        <p class="text-light small">Advancing scientific excellence through strategic funding and innovation support</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>

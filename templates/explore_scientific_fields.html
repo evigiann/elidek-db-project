@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ELIDEK</title>
+    <title>ELIDEK - Explore Scientific Fields</title>
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,24 +38,90 @@
         </ul>
       </header>
     </div>
-    <div>
-      <div>
-        <form action="{{url_for('explore_scientific_fields_2')}}" method = 'POST'>
-          <fieldset>
-            <legend style="color:#ffffff">Explore Projects per Scientific Field:</legend>
-            <label for="scientific_field" style="color:#ffffff">Scientific Field:</label>
-            <input type="text" id="scientific_field" name="scientific_field"><br><br>
-            <input type="submit" value="Submit">
-          </fieldset>
-        </form>
-        <form action="{{url_for('explore_scientific_fields_3')}}" method = 'POST'>
-          <fieldset>
-            <legend style="color:#ffffff">Explore Researchers per Scientific Field:</legend>
-            <label for="scientific_field" style="color:#ffffff">Scientific Field:</label>
-            <input type="text" id="scientific_field" name="scientific_field"><br><br>
-            <input type="submit" value="Submit">
-          </fieldset>
-        </form>
+
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="text-white mb-3">Explore Scientific Fields</h2>
+        <p class="text-light lead">Discover projects and researchers organized by scientific disciplines</p>
       </div>
+
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="form-container">
+            <h3 class="form-title">
+              <i class="fas fa-project-diagram me-2"></i>
+              Projects by Field
+            </h3>
+            
+            <form action="{{url_for('explore_scientific_fields_2')}}" method="POST">
+              <fieldset class="form-fieldset">
+                <legend class="form-legend">Find Projects</legend>
+                
+                <div class="form-group">
+                  <label for="scientific_field" class="form-label">
+                    <i class="fas fa-atom me-1"></i>
+                    Scientific Field
+                  </label>
+                  <input type="text" id="scientific_field" name="scientific_field" class="form-input" placeholder="Enter scientific field (e.g., Computer Science, Biology)" required>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                  <i class="fas fa-search me-2"></i>
+                  Find Projects
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+          <div class="form-container">
+            <h3 class="form-title">
+              <i class="fas fa-users me-2"></i>
+              Researchers by Field
+            </h3>
+            
+            <form action="{{url_for('explore_scientific_fields_3')}}" method="POST">
+              <fieldset class="form-fieldset">
+                <legend class="form-legend">Find Researchers</legend>
+                
+                <div class="form-group">
+                  <label for="scientific_field" class="form-label">
+                    <i class="fas fa-atom me-1"></i>
+                    Scientific Field
+                  </label>
+                  <input type="text" id="scientific_field" name="scientific_field" class="form-input" placeholder="Enter scientific field (e.g., Computer Science, Biology)" required>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                  <i class="fas fa-search me-2"></i>
+                  Find Researchers
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card p-4 mt-4">
+        <div class="text-center">
+          <i class="fas fa-lightbulb feature-icon"></i>
+          <h4 class="text-white mb-3">Popular Scientific Fields</h4>
+          <p class="text-light">Explore trending research areas including Computer Science, Biomedical Engineering, Environmental Science, Materials Science, and Artificial Intelligence.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark border-top border-success mt-5 py-4">
+      <div class="container text-center">
+        <p class="text-light mb-0">
+          <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+          Hellenic Foundation for Research & Innovation (ELIDEK) © 2024
+        </p>
+        <p class="text-light small">Advancing scientific excellence through strategic funding and innovation support</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>

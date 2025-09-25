@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ELIDEK</title>
+    <title>ELIDEK - Insert Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -38,52 +38,220 @@
         </ul>
       </header>
     </div>
-        <div>
-            <form action="{{url_for('insert_project')}}" method="POST" style="color:#ffffff">
-              <fieldset>
-                <legend>Create New Project</legend>
-                <label for="project_title">Project title:</label>
-                <input type="text" id="project_title" name="project_title"><br><br>
-                <label for="abstract"> Abstract:</label>
-                <input type="text" id="abstract" name="abstract"><br><br>
-                <label for="funding">Funding (Between 100,000 and 1,000,000):</label>
-                <input type="number" id="funding" name="funding"><br><br>
-                <label for="start_date">Start Date:</label>
-                <input type="date" id="start_date" name="start_date"><br><br>
-                <label for="end_date">End Date:</label>
-                <input type="date" id="end_date" name="end_date"><br><br>
-                <label for="organisation_name">Organisation Name:</label>
-                <input type="text" id="organisation_name" name="organisation_name"><br><br>
-                <label for="executive_name">Executive Name:</label>
-                <input type="text" id="executive_name" name="executive_name"><br><br>
-                <label for="responsible_researcher_name">Overseeing Researcher's Name:</label>
-                <input type="text" id="responsible_researcher_name" name="responsible_researcher_name"><br><br>
-                <label for="responsible_researcher_surname">Overseeing Researcher's Surname:</label>
-                <input type="text" id="responsible_researcher_surname" name="responsible_researcher_surname"><br><br>
-                <label for="program_name">Program Name:</label>
-                <input type="text" id="program_name" name="program_name"><br><br>
-                <label for="evaluation_grade">Evaluation Grade(Between 0 and 100):</label>
-                <input type="number" id="evaluation_grade" name="evaluation_grade"><br><br>
-                <label for="evaluation_date">Evaluation Date:</label>
-                <input type="date" id="evaluation_date" name="evaluation_date"><br><br>
-                <label for="evaluating_researcher_name">Evaluating Researcher Name:</label>
-                <input type="text" id="evaluating_researcher_name" name="evaluating_researcher_name"><br><br>
-                <label for="evaluating_researcher_surname">Evaluating Researcher Surname:</label>
-                <input type="text" id="evaluating_researcher_surname" name="evaluating_researcher_surname"><br><br>
-                <legend>Add a Scientific Field to a New (or Already Existing) Project</legend>
-                <label for="scientific_field">Scientific Field:</label>
-                <input type="text" id="scientific_field" name="scientific_field"><br><br>
-                <legend>Add a Deliverable to a New (or Already Existing) Project</legend>
-                <label for="deliverable_title">Deliverable Title:</label>
-                <input type="text" id="deliverable_title" name="deliverable_title"><br><br>
-                <label for="deliverable_abstract">Deliverable Abstract:</label>
-                <input type="text" id="deliverable_abstract" name="deliverable_abstract"><br><br>
-                <label for="deliverable_due_date">Deliverable Due Date:</label>
-                <input type="date" id="deliverable_due_date" name="deliverable_due_date"><br><br>
-                <input type="submit" value="Submit">
-            </fieldset>
-            </form>
-            <h5 style="color:#ffffff">{{message}}</h5>
+
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">
+          <i class="fas fa-project-diagram me-2"></i>
+          Create New Project
+        </h2>
+        
+        <form action="{{url_for('insert_project')}}" method="POST">
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Project Information</legend>
+            
+            <div class="form-group">
+              <label for="project_title" class="form-label required">
+                <i class="fas fa-heading me-1"></i>
+                Project Title
+              </label>
+              <input type="text" id="project_title" name="project_title" class="form-input" placeholder="Enter project title" required>
             </div>
+            
+            <div class="form-group">
+              <label for="abstract" class="form-label required">
+                <i class="fas fa-align-left me-1"></i>
+                Abstract
+              </label>
+              <textarea id="abstract" name="abstract" class="form-textarea" placeholder="Enter project abstract" required></textarea>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="funding" class="form-label required">
+                  <i class="fas fa-euro-sign me-1"></i>
+                  Funding
+                </label>
+                <input type="number" id="funding" name="funding" class="form-input" placeholder="100,000 - 1,000,000" min="100000" max="1000000" required>
+                <small class="text-light">Between €100,000 and €1,000,000</small>
+              </div>
+              
+              <div class="form-group">
+                <label for="program_name" class="form-label required">
+                  <i class="fas fa-list-alt me-1"></i>
+                  Program Name
+                </label>
+                <input type="text" id="program_name" name="program_name" class="form-input" placeholder="Enter program name" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="start_date" class="form-label required">
+                  <i class="fas fa-calendar-plus me-1"></i>
+                  Start Date
+                </label>
+                <input type="date" id="start_date" name="start_date" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="end_date" class="form-label required">
+                  <i class="fas fa-calendar-minus me-1"></i>
+                  End Date
+                </label>
+                <input type="date" id="end_date" name="end_date" class="form-input" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Organization & Management</legend>
+            
+            <div class="form-group">
+              <label for="organisation_name" class="form-label required">
+                <i class="fas fa-building me-1"></i>
+                Organisation Name
+              </label>
+              <input type="text" id="organisation_name" name="organisation_name" class="form-input" placeholder="Enter organisation name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="executive_name" class="form-label required">
+                <i class="fas fa-user-tie me-1"></i>
+                Executive Name
+              </label>
+              <input type="text" id="executive_name" name="executive_name" class="form-input" placeholder="Enter executive name" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="responsible_researcher_name" class="form-label required">
+                  <i class="fas fa-user-graduate me-1"></i>
+                  Overseeing Researcher Name
+                </label>
+                <input type="text" id="responsible_researcher_name" name="responsible_researcher_name" class="form-input" placeholder="Enter researcher name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="responsible_researcher_surname" class="form-label required">
+                  <i class="fas fa-user-graduate me-1"></i>
+                  Overseeing Researcher Surname
+                </label>
+                <input type="text" id="responsible_researcher_surname" name="responsible_researcher_surname" class="form-input" placeholder="Enter researcher surname" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Evaluation Details</legend>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="evaluation_grade" class="form-label required">
+                  <i class="fas fa-star me-1"></i>
+                  Evaluation Grade
+                </label>
+                <input type="number" id="evaluation_grade" name="evaluation_grade" class="form-input" placeholder="0 - 100" min="0" max="100" required>
+                <small class="text-light">Between 0 and 100</small>
+              </div>
+              
+              <div class="form-group">
+                <label for="evaluation_date" class="form-label required">
+                  <i class="fas fa-calendar-check me-1"></i>
+                  Evaluation Date
+                </label>
+                <input type="date" id="evaluation_date" name="evaluation_date" class="form-input" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="evaluating_researcher_name" class="form-label required">
+                  <i class="fas fa-user-check me-1"></i>
+                  Evaluating Researcher Name
+                </label>
+                <input type="text" id="evaluating_researcher_name" name="evaluating_researcher_name" class="form-input" placeholder="Enter evaluator name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="evaluating_researcher_surname" class="form-label required">
+                  <i class="fas fa-user-check me-1"></i>
+                  Evaluating Researcher Surname
+                </label>
+                <input type="text" id="evaluating_researcher_surname" name="evaluating_researcher_surname" class="form-input" placeholder="Enter evaluator surname" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">Additional Information</legend>
+            
+            <div class="form-group">
+              <label for="scientific_field" class="form-label">
+                <i class="fas fa-atom me-1"></i>
+                Scientific Field
+              </label>
+              <input type="text" id="scientific_field" name="scientific_field" class="form-input" placeholder="Enter scientific field">
+            </div>
+            
+            <div class="form-group">
+              <label for="deliverable_title" class="form-label">
+                <i class="fas fa-tasks me-1"></i>
+                Deliverable Title
+              </label>
+              <input type="text" id="deliverable_title" name="deliverable_title" class="form-input" placeholder="Enter deliverable title">
+            </div>
+            
+            <div class="form-group">
+              <label for="deliverable_abstract" class="form-label">
+                <i class="fas fa-file-alt me-1"></i>
+                Deliverable Abstract
+              </label>
+              <textarea id="deliverable_abstract" name="deliverable_abstract" class="form-textarea" placeholder="Enter deliverable abstract"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="deliverable_due_date" class="form-label">
+                <i class="fas fa-calendar-times me-1"></i>
+                Deliverable Due Date
+              </label>
+              <input type="date" id="deliverable_due_date" name="deliverable_due_date" class="form-input">
+            </div>
+          </fieldset>
+          
+          <button type="submit" class="form-submit">
+            <i class="fas fa-plus me-2"></i>
+            Create Project
+          </button>
+        </form>
+        
+        {% if message %}
+          <div class="form-message {{ 'success' if 'success' in message|lower else 'error' }}">
+            <i class="fas fa-{{ 'check-circle' if 'success' in message|lower else 'exclamation-circle' }} me-2"></i>
+            {{ message }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="feature-card p-4 mt-4">
+        <div class="text-center">
+          <i class="fas fa-project-diagram feature-icon"></i>
+          <h4 class="text-white mb-3">About Research Projects</h4>
+          <p class="text-light">Research projects are the core initiatives funded by ELIDEK. Each project is carefully evaluated, assigned to specific programs, and managed by qualified researchers and executives to ensure scientific excellence and impactful results.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark border-top border-success mt-5 py-4">
+      <div class="container text-center">
+        <p class="text-light mb-0">
+          <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+          Hellenic Foundation for Research & Innovation (ELIDEK) © 2024
+        </p>
+        <p class="text-light small">Advancing scientific excellence through strategic funding and innovation support</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>
