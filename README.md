@@ -1,6 +1,12 @@
 # ELIDEK Research Management System
+![Smart Questionnaire](https://img.shields.io/badge/Full%20Stack-Project-blue)
+![Flask](https://img.shields.io/badge/Flask-2.3.3-green)
+![MySQL](https://img.shields.io/badge/MySQL-Database-orange)
 
+## 📋 Overview
 A full-stack web application for managing research projects, organizations, and researchers for the Hellenic Foundation for Research and Innovation (ELIDEK). This system provides comprehensive database management with advanced analytics capabilities for research funding oversight.
+
+**Live Demo:** [(https://elidek-db-project.onrender.com/)](https://elidek-db-project.onrender.com/)
 
 ## 🚀 Features
 
