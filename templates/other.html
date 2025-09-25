@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>ELIDEK</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>ELIDEK - Database Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
   <body class="bg-dark">
@@ -19,7 +19,7 @@
             ELIDEK Portal
           </span>
         </a>
-     <ul class="nav nav-pills bg-dark">
+        <ul class="nav nav-pills bg-dark">
           <li class="nav-item">
             <a href="{{url_for('home')}}" class="nav-link {{ 'active' if request.path == '/' else '' }}" style="color: #2dc50e">
               <i class="fas fa-home me-1"></i>Home
@@ -37,16 +37,103 @@
           </li>
         </ul>
       </header>
-    </div>  
-    <div class="container " style="color:#ffffff">
-         Choose your next step:
     </div>
-        <div class="list-group">
-            <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('fun_fact_1')}}"  style="color:#2dc50e">Obscure fact number 1(aka 3.4)</a>
-            <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('fun_fact_2')}}"  style="color:#2dc50e">Obscure fact number 2(aka 3.5)</a>
-            <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('fun_fact_3')}}" style="color:#2dc50e">Obscure fact number 3(aka 3.6)</a>
-            <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('fun_fact_4')}}" style="color:#2dc50e">Obscure fact number 4(aka 3.7)</a>
-            <a class="list-group-item list-group-item-action bg-dark" href="{{url_for('fun_fact_5')}}" style="color:#2dc50e">Obscure fact number 5(aka 3.8)</a>
+
+    <div class="container">
+      <!-- Page Header -->
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h1 class="display-5 fw-bold text-white">
+            <i class="fas fa-chart-bar me-3" style="color: #2dc50e;"></i>
+            Advanced Analytics
+          </h1>
+          <p class="lead text-light">Explore specialized insights and statistical analyses from the ELIDEK database</p>
         </div>
+      </div>
+
+      <!-- Action Cards -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-4">
+            <h3 class="text-white mb-4">Choose Your Analysis</h3>
+          </div>
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('fun_fact_1')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-chart-pie fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Project Duration Analysis</h5>
+                <p class="mb-0 small text-light">Analyze project timelines and completion patterns</p>
+              </div>
+            </a>
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('fun_fact_2')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-money-bill-wave fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Funding Distribution</h5>
+                <p class="mb-0 small text-light">Examine funding allocation across research areas</p>
+              </div>
+            </a>
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('fun_fact_3')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-handshake fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Collaboration Networks</h5>
+                <p class="mb-0 small text-light">Study inter-organizational research partnerships</p>
+              </div>
+            </a>
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('fun_fact_4')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-graduation-cap fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Academic Backgrounds</h5>
+                <p class="mb-0 small text-light">Explore researcher education and specialization patterns</p>
+              </div>
+            </a>
+            <a class="list-group-item list-group-item-action bg-dark d-flex align-items-center" href="{{url_for('fun_fact_5')}}" style="color: #2dc50e; border: 1px solid #3d4547;">
+              <i class="fas fa-trophy fa-2x me-3"></i>
+              <div class="text-start">
+                <h5 class="mb-1">Performance Metrics</h5>
+                <p class="mb-0 small text-light">Evaluate research outcomes and success indicators</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="feature-card p-4">
+            <h4 class="text-white text-center mb-4">
+              <i class="fas fa-lightbulb me-2" style="color: #2dc50e;"></i>
+              Database Insights
+            </h4>
+            <div class="row text-center">
+              <div class="col-md-4 mb-3">
+                <div class="stat-number">50+</div>
+                <small class="text-light">Active Research Projects</small>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="stat-number">100+</div>
+                <small class="text-light">Researchers</small>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="stat-number">30+</div>
+                <small class="text-light">Collaborating Organizations</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark border-top border-success mt-5 py-4">
+      <div class="container text-center">
+        <p class="text-light mb-0">
+          <i class="fas fa-flask me-2" style="color: #2dc50e;"></i>
+          Hellenic Foundation for Research & Innovation (ELIDEK) © 2024
+        </p>
+        <p class="text-light small">Advancing scientific excellence through strategic funding and innovation support</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>
