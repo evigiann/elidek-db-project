@@ -184,39 +184,41 @@ def explore_scientific_fields():
 #returning projects
 @app.route('/explore_scientific_fields_2',methods = ['POST'])
 def explore_scientific_fields_2():
-        field_details=[]
-        if request.method == 'POST':
-            scientific_field_details = request.form
-            scientific_field = scientific_field_details ['scientific_field']
-            cur = mysql.connection.cursor()
-            cur.execute("""SELECT project.project_title,scientific_field_of_project.project_title FROM project 
-                        INNER JOIN scientific_field_of_project  ON
-                        project.project_title = scientific_field_of_project.project_title
-                        WHERE scientific_field_of_project.scientific_field='{}' AND ((curdate()<project.end_date) AND (curdate()>project.start_date)); """.format(scientific_field))
-            field_details = cur.fetchall()
-            cur.close()
-            return render_template("explore_scientific_fields_2.html", field_details=field_details)
+    field_details=[]
+    if request.method == 'POST':
+        scientific_field_details = request.form
+        scientific_field = scientific_field_details['scientific_field']
+        cur = mysql.connection.cursor()
+        cur.execute("""SELECT p.project_title, p.abstract, p.start_date, p.end_date, p.funding
+                        FROM project p
+                        INNER JOIN scientific_field_of_project sfop ON p.project_title = sfop.project_title
+                        WHERE sfop.scientific_field = '{}' 
+                        AND CURDATE() BETWEEN p.start_date AND p.end_date
+                    """.format(scientific_field))
+        field_details = cur.fetchall()
+        cur.close()
+        return render_template("explore_scientific_fields_2.html", field_details=field_details)
 #returning researchers
 @app.route('/explore_scientific_fields_3',methods = ['POST'])
 def explore_scientific_fields_3():
-        field_details=[]
-        if request.method == 'POST':
-            scientific_field_details = request.form
-            scientific_field = scientific_field_details ['scientific_field']
-            cur = mysql.connection.cursor()
-            cur.execute("""SELECT researcher.researcher_name,works_on.researcher_name, researcher.researcher_surname,works_on.researcher_surname FROM researcher 
-                                INNER JOIN works_on 
-                                ON researcher.researcher_name = works_on.researcher_name AND researcher.researcher_surname = works_on.researcher_surname
-                                WHERE works_on.project_title IN
-                                ( SELECT project.project_title FROM project
-                                INNER JOIN scientific_field_of_project 
-                                ON project.project_title = scientific_field_of_project.project_title
-                                WHERE((scientific_field_of_project.scientific_field='{}')
-                                AND( project.start_date<=DATE_SUB(CURDATE(),INTERVAL 1 YEAR)) AND ((curdate()<project.end_date) AND (curdate()>project.start_date))
-                                ));""".format(scientific_field))
-            field_details = cur.fetchall()
-            cur.close()
-            return render_template("explore_scientific_fields_3.html", field_details=field_details)
+    field_details=[]
+    if request.method == 'POST':
+        scientific_field_details = request.form
+        scientific_field = scientific_field_details['scientific_field']
+        cur = mysql.connection.cursor()
+        cur.execute("""SELECT DISTINCT r.researcher_name, r.researcher_surname, r.organisation_name
+                        FROM researcher r
+                        INNER JOIN works_on w ON r.researcher_name = w.researcher_name 
+                            AND r.researcher_surname = w.researcher_surname
+                        INNER JOIN scientific_field_of_project sfop ON w.project_title = sfop.project_title
+                        INNER JOIN project p ON w.project_title = p.project_title
+                        WHERE sfop.scientific_field = '{}' 
+                        AND p.start_date >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR)
+                        AND CURDATE() BETWEEN p.start_date AND p.end_date
+                    """.format(scientific_field))
+        field_details = cur.fetchall()
+        cur.close()
+        return render_template("explore_scientific_fields_3.html", field_details=field_details)
 #for the more niche queries
 @app.route('/other')
 def other():
