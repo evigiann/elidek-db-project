@@ -46,7 +46,7 @@ A full-stack web application for managing research projects, organizations, and 
 
 ## 📊 Database Schema
 
-The system implements a comprehensive relational database with 12 interconnected tables:
+The system implements a comprehensive relational database with 15 interconnected tables:
 
 ![ELIDEK Portal](/database_schema.png)
 
